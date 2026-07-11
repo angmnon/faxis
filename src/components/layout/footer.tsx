@@ -117,10 +117,10 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Industrial text mark */}
-        <div className="mt-8 overflow-hidden">
-          <p className="font-display text-[18vw] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-b from-[rgba(0,229,255,0.06)] to-transparent tracking-tight select-none text-center whitespace-nowrap">
-            FAXIS.AI
+        {/* Subtle brand mark */}
+        <div className="mt-8 text-center">
+          <p className="font-mono text-[10px] text-[rgba(0,229,255,0.08)] tracking-[0.3em]">
+            FAXIS.AI — LIGHTS·OUT FACTORY NETWORK
           </p>
         </div>
       </div>
