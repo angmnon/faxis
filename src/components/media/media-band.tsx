@@ -39,8 +39,10 @@ export function MediaBand({
   const sectionRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
-    if (!videoRef.current) return;
     const el = sectionRef.current;
+    const v = videoRef.current;
+    // Immediate best-effort start; observer also resumes on scroll into view.
+    if (v) v.play().catch(() => {});
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
@@ -50,7 +52,7 @@ export function MediaBand({
           videoRef.current?.pause();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -59,22 +61,29 @@ export function MediaBand({
   return (
     <section ref={sectionRef} className={`relative overflow-hidden ${minH} flex items-center`}>
       {/* Background media */}
+      {poster && !video && (
+        <div
+          className="absolute inset-0 ken-burns bg-cover bg-center"
+          style={{ backgroundImage: `url(${poster})` }}
+        />
+      )}
+      {video && poster && (
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${poster})` }}
+        />
+      )}
       {video && (
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           src={video}
+          poster={poster}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
-        />
-      )}
-      {!video && poster && (
-        <div
-          className="absolute inset-0 ken-burns bg-cover bg-center"
-          style={{ backgroundImage: `url(${poster})` }}
+          preload="auto"
         />
       )}
       {!video && !poster && (

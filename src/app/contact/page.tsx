@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { PageBand } from "@/components/layout/page-band";
+import { ImageBand } from "@/components/media/image-band";
 import { CheckCircle2, Send, ArrowUpRight, ShieldAlert, Mail } from "lucide-react";
 
 const IDENTITIES = [
@@ -64,6 +65,13 @@ export default function ContactPage() {
         eyebrow="// Contact"
         title={<>Start a conversation.</>}
         subtitle="Tell us who you are, what you make or offer, and which market matters most. This form collects an initial enquiry; we respond to meaningful submissions and take next steps under a written plan."
+      />
+
+      <ImageBand
+        src="/media/conveyor.jpg"
+        align="center"
+        eyebrow="Start with a product"
+        title={<>One product family. One target market. One honest assessment.</>}
       />
 
       <section className="pb-24 lg:pb-32">

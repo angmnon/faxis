@@ -3,7 +3,6 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollReveal } from "@/components/layout/scroll-reveal";
-import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${process.env.COZE_PROJECT_DOMAIN_DEFAULT || "faxis.ai"}`),
@@ -60,13 +59,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className="min-h-screen bg-background text-foreground antialiased font-sans">
-        <ThemeProvider>
-          <Navbar />
-          <main className="relative">{children}</main>
-          <Footer />
-          <ScrollReveal />
-        </ThemeProvider>
+      <body className="min-h-screen bg-[#0a0a0a] text-[#fafafa] antialiased font-sans">
+        <Navbar />
+        <main className="relative">{children}</main>
+        <Footer />
+        <ScrollReveal />
       </body>
     </html>
   );

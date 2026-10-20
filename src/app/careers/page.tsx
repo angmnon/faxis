@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
+import { ImageBand } from "@/components/media/image-band";
 import { Card } from "@/components/layout/primitives";
 
 export const metadata = {
@@ -28,6 +29,14 @@ export default function CareersPage() {
         subtitle="FAXIS.AI is building a small, capable team around local manufacturing programs. Specific roles are published only when a program or function is ready to hire—we do not maintain a placeholder list of openings."
       />
 
+      <ImageBand
+        src="/media/robot-arm.jpg"
+        align="center"
+        eyebrow="Build with us"
+        title={<>Engineers, operators, and program builders.</>}
+        lead="We hire as specific programs and functions mature—around engineering, quality, software, operations, and deployment."
+      />
+
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <SectionHeader
@@ -44,6 +53,13 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/materials.jpg"
+        align="left"
+        eyebrow="Working in local manufacturing"
+        title={<>Operational depth meets engineering judgment.</>}
+      />
 
       <section className="py-20 lg:py-28 bg-muted/30 border-y border-border">
         <div className="max-w-3xl mx-auto px-6 text-center">

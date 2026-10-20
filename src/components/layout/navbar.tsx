@@ -2,10 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { Logo } from "@/components/brand/logo";
 import { useScrollY } from "@/hooks/use-scroll";
-import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/solutions", label: "Solutions" },
@@ -19,9 +18,6 @@ const NAV_LINKS = [
 export function Navbar() {
   const scrolled = useScrollY(16);
   const [open, setOpen] = React.useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => setMounted(true), []);
 
   return (
     <header
@@ -52,13 +48,6 @@ export function Navbar() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-2">
-            <button
-              onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
-              aria-label="Toggle theme"
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground transition-colors"
-            >
-              {mounted && resolvedTheme === "light" ? <Moon size={15} /> : <Sun size={15} />}
-            </button>
             <Link href="/contact?intent=brand" className="btn-primary !py-2 !px-4 text-[13.5px]">
               Plan Local Production
               <ArrowUpRight size={14} strokeWidth={2.2} />
@@ -67,13 +56,6 @@ export function Navbar() {
 
           {/* Mobile toggle */}
           <div className="flex lg:hidden items-center gap-2">
-            <button
-              onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
-              aria-label="Toggle theme"
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-border text-muted-foreground"
-            >
-              {mounted && resolvedTheme === "light" ? <Moon size={15} /> : <Sun size={15} />}
-            </button>
             <button
               onClick={() => setOpen(!open)}
               className="text-foreground p-2 -mr-2"

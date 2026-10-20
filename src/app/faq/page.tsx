@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
+import { ImageBand } from "@/components/media/image-band";
 import {
   Accordion,
   AccordionItem,
@@ -65,6 +66,12 @@ export default function FaqPage() {
         eyebrow="// Frequently Asked Questions"
         title={<>Questions, answered plainly.</>}
         subtitle="Short, direct answers about what FAXIS.AI does, how programs start, and what we do not promise."
+      />
+      <ImageBand
+        src="/media/inspection.jpg"
+        align="center"
+        eyebrow="Quality first"
+        title={<>Evidence, assumptions, and qualifications stated clearly.</>}
       />
       <section className="pb-24 lg:pb-32">
         <div className="max-w-3xl mx-auto px-6">

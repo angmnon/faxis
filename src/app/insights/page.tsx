@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
+import { ImageBand } from "@/components/media/image-band";
 
 export const metadata = {
   title: "Insights",
@@ -15,6 +16,13 @@ export default function InsightsPage() {
         eyebrow="// Insights"
         title={<>Notes on local manufacturing, coming together.</>}
         subtitle="We will publish program-learning notes, methodology explanations, and careful market observations here as material becomes ready. Until then, there are no placeholder articles."
+      />
+      <ImageBand
+        src="/media/city-night.jpg"
+        align="left"
+        eyebrow="Markets"
+        title={<>Demand fragments across cities, regions, and channels.</>}
+        lead="Observations on local demand, trade routes, and how production responds."
       />
       <section className="pb-24 lg:pb-32">
         <div className="max-w-3xl mx-auto px-6">

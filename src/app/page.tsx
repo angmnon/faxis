@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react";
 import { MediaBand } from "@/components/media/media-band";
+import { ImageBand } from "@/components/media/image-band";
 import { SectionHeader } from "@/components/layout/section-header";
 import { GlobeDots } from "@/components/network/globe-dots";
 
@@ -49,6 +50,7 @@ export default function HomePage() {
       {/* Hero — full-viewport cinematic */}
       <MediaBand
         video="/media/hero.mp4"
+        poster="/media/network-globe.jpg"
         eyebrow="A Global Local-Manufacturing Network"
         align="center"
         minH="min-h-[100svh]"
@@ -71,6 +73,7 @@ export default function HomePage() {
       {/* Chapter A — problem */}
       <MediaBand
         video="/media/trade-route.mp4"
+        poster="/media/port.jpg"
         align="left"
         minH="min-h-[90svh]"
         eyebrow="The Supply Chain Challenge"
@@ -102,6 +105,14 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ImageBand
+        src="/media/control-room.jpg"
+        align="left"
+        eyebrow="The operating layer"
+        title={<>Software connects the plant to the decisions that run it.</>}
+        lead="Product intelligence, planning, equipment, quality, and delivery sit on one coherent operating layer."
+      />
+
       {/* Chapter C — product families */}
       <section className="py-28 lg:py-40 border-y border-border bg-[#080809]">
         <div className="max-w-6xl mx-auto px-6">
@@ -125,6 +136,14 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/conveyor.jpg"
+        align="center"
+        eyebrow="From shelf to shelf"
+        title={<>Packaged products move along a configured, qualified route.</>}
+        lead="Processes, suppliers, equipment, quality, and operations are chosen around the product."
+      />
 
       {/* Chapter D — process timeline */}
       <section className="py-28 lg:py-40 bg-[#0b0b0c]">
