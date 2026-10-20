@@ -12,9 +12,9 @@ interface LogoProps {
  */
 export function Logo({ size = "md", showMark = true, className }: LogoProps) {
   const sizes = {
-    sm: { mark: 18, word: 15 },
-    md: { mark: 24, word: 20 },
-    lg: { mark: 34, word: 28 },
+    sm: { mark: 18, word: 17 },
+    md: { mark: 24, word: 23 },
+    lg: { mark: 34, word: 32 },
   };
   const s = sizes[size];
 
