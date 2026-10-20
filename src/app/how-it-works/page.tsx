@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Card, CheckItem, Step } from "@/components/layout/primitives";
 
@@ -46,7 +46,7 @@ const OPERATIONS = [
 export default function HowItWorksPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="How It Works"
         eyebrow="// How It Works"
         title={<>From product opportunity to operating local capacity.</>}

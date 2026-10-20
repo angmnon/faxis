@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 
 export const metadata = {
   title: "Insights",
@@ -10,7 +10,7 @@ export const metadata = {
 export default function InsightsPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="Insights"
         eyebrow="// Insights"
         title={<>Notes on local manufacturing, coming together.</>}

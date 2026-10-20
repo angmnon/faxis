@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import { CheckCircle2, Send, ArrowUpRight, ShieldAlert, Mail } from "lucide-react";
 
 const IDENTITIES = [
@@ -59,7 +59,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHeader
+      <PageBand
         label="Contact"
         eyebrow="// Contact"
         title={<>Start a conversation.</>}

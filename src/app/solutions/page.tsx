@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Store, Cpu, Home, Wrench, Archive, Boxes, SlidersHorizontal, Laptop, Printer, Cog, Layers, Container } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Card, CheckItem } from "@/components/layout/primitives";
 
@@ -71,7 +71,7 @@ const PROCESSES = [
 export default function SolutionsPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="Solutions"
         eyebrow="// Solutions"
         title={<>Organized around what you make, not how a machine is grouped.</>}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Search, Workflow, Bot, ClipboardCheck, BarChart3, SlidersHorizontal, ShieldCheck, Users } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Card, CheckItem } from "@/components/layout/primitives";
 
@@ -64,7 +64,7 @@ const PRINCIPLES = [
 export default function TechnologyPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="Technology"
         eyebrow="// Technology Model"
         title={<>Software coordinates. Machines execute. People stay accountable.</>}

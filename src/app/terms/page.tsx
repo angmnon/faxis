@@ -1,11 +1,11 @@
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 
 export const metadata = { title: "Terms of Use" };
 
 export default function TermsPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         eyebrow="// Legal"
         title={<>Terms of Use</>}
         subtitle="Terms governing use of the FAXIS.AI website. Commercial partnership terms are agreed separately in writing."

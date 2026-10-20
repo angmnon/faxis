@@ -1,12 +1,12 @@
 ﻿import Link from "next/link";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 
 export const metadata = { title: "Cookies Policy" };
 
 export default function CookiesPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         eyebrow="// Legal"
         title={<>Cookies Policy</>}
         subtitle="How FAXIS.AI uses cookies and similar technologies on our website."

@@ -264,3 +264,63 @@ html.js .reveal.in-view {
   background:
     radial-gradient(ellipse 60% 45% at 50% 0%, rgba(128, 128, 128, 0.08), transparent 70%);
 }
+
+/* ---------- Starlink-style cinematic type scale ---------- */
+.display-hero {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  font-size: clamp(2.75rem, 7vw, 7rem);
+}
+.display-section {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+}
+
+/* ---------- Full-bleed media band overlays ---------- */
+.band-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.65) 0%,
+    rgba(5, 5, 5, 0.25) 35%,
+    rgba(5, 5, 5, 0.35) 65%,
+    rgba(5, 5, 5, 0.85) 100%
+  );
+}
+.band-overlay-simple {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5,5,5,0.55), rgba(5,5,5,0.75));
+}
+
+/* ---------- Ken Burns slow zoom for stills ---------- */
+@keyframes ken-burns {
+  0% { transform: scale(1.02) translate(0, 0); }
+  100% { transform: scale(1.12) translate(0, -1.5%); }
+}
+.ken-burns {
+  animation: ken-burns 18s ease-in-out infinite alternate;
+}
+
+/* ---------- Scroll hint ---------- */
+@keyframes scroll-hint {
+  0% { transform: translateY(0); opacity: 0.9; }
+  70% { transform: translateY(10px); opacity: 0.2; }
+  100% { transform: translateY(0); opacity: 0.9; }
+}
+.scroll-hint {
+  animation: scroll-hint 2.2s ease-in-out infinite;
+}
+
+/* ---------- Slow pulse for network dots ---------- */
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.35; r: 2; }
+  50% { opacity: 1; r: 3; }
+}
+.network-dot { animation: dot-pulse 3s ease-in-out infinite; }

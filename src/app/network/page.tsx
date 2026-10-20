@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Building2, Handshake, Factory, Wrench, MapPin, ShieldCheck, Gauge } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Card, CheckItem } from "@/components/layout/primitives";
 
@@ -49,7 +49,7 @@ const QUALIFICATION = [
 export default function NetworkPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="Global Network"
         eyebrow="// Global Network"
         title={<>Local where it matters. Connected everywhere.</>}

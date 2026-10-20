@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import {
   Accordion,
   AccordionItem,
@@ -60,7 +60,7 @@ const FAQS = [
 export default function FaqPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="FAQ"
         eyebrow="// Frequently Asked Questions"
         title={<>Questions, answered plainly.</>}

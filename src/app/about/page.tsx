@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Compass, Users, ShieldCheck, Globe2 } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Card } from "@/components/layout/primitives";
 
@@ -36,7 +36,7 @@ const PRINCIPLES = [
 export default function AboutPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="About"
         eyebrow="// About FAXIS.AI"
         title={<>A local-manufacturing partner for global brands.</>}

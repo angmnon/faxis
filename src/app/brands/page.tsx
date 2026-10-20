@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Card, CheckItem, Step, Pill } from "@/components/layout/primitives";
 
@@ -88,7 +88,7 @@ const MODELS = [
 export default function BrandsPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="For Brands & Retailers"
         eyebrow="// Brands & Retailers"
         title={<>Make your products closer to the customers who buy them.</>}

@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 
 export const metadata = { title: "Privacy Policy" };
 
 export default function PrivacyPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         eyebrow="// Legal"
         title={<>Privacy Policy</>}
         subtitle="How FAXIS.AI collects, uses, and protects information from visitors to our website and our business partners."

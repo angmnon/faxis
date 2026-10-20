@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Card } from "@/components/layout/primitives";
 
@@ -21,7 +21,7 @@ const TEAM_FIELDS = [
 export default function CareersPage() {
   return (
     <>
-      <PageHeader
+      <PageBand
         label="Careers"
         eyebrow="// Careers"
         title={<>Join as programs take shape.</>}
