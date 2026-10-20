@@ -24,17 +24,15 @@ export function Logo({ size = "md", showMark = true, className }: LogoProps) {
         <img
           src="/assets/logo-mark.png"
           alt="FAXIS.AI mark"
-          width={s.mark}
-          height={s.mark}
+          style={{ width: s.mark, height: s.mark }}
           className="shrink-0"
         />
       )}
       <img
         src="/assets/logo-wordmark.png"
         alt="FAXIS.AI"
-        width={Math.round(s.word * 3.99)}
-        height={s.word}
-        className="h-auto w-auto"
+        style={{ height: s.word }}
+        className="w-auto"
       />
     </div>
   );
