@@ -13,28 +13,23 @@ const PROCESS_STEPS = [
 ];
 
 const MARKET_STATS = [
-  { value: "$1.0–1.3T", label: "Global CNC / Machining TAM", tint: "cyan" },
-  { value: "$3.2–3.5T", label: "Global Injection Molding TAM", tint: "violet" },
-  { value: "~$230B", label: "Global Sheet Metal TAM", tint: "amber" },
-  { value: "$29–38B", label: "Global 3D Printing TAM", tint: "mint" },
+  { value: "$1.0–1.3T", label: "Global CNC / Machining TAM" },
+  { value: "$3.2–3.5T", label: "Global Injection Molding TAM" },
+  { value: "~$230B", label: "Global Sheet Metal TAM" },
+  { value: "$29–38B", label: "Global 3D Printing TAM" },
 ];
 
 export function WhyNowSection() {
   return (
-    <section className="relative py-28 lg:py-36 overflow-hidden">
-      <div className="absolute inset-0 bg-grid-fine opacity-[0.06]" />
-      <div className="absolute -top-20 left-1/4 w-[500px] h-[500px] bg-[#0088FF]/[0.05] blur-[140px] rounded-full" />
-
-      <div className="relative max-w-[1440px] mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 gap-10 mb-16 lg:mb-20">
+    <section className="relative py-24 lg:py-32 overflow-hidden bg-muted/30 border-y border-border">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-10 mb-14 lg:mb-20">
           <div className="lg:col-span-7">
-            <div className="reveal label-industrial mb-5">{"//"} Why Now</div>
-            <h2 className="reveal font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-[#E6ECF5] mb-6" data-delay="100">
-              The window for
-              <br />
-              <span className="text-gradient-cyan-soft">lights-out manufacturing is open.</span>
+            <div className="reveal label-industrial mb-5">Why Now</div>
+            <h2 className="reveal font-display text-4xl md:text-5xl font-semibold leading-[1.1] tracking-tight text-foreground mb-6" data-delay="100">
+              The window for lights-out manufacturing is open.
             </h2>
-            <p className="reveal text-[#8A94A6] text-base md:text-lg leading-relaxed max-w-2xl" data-delay="200">
+            <p className="reveal text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl" data-delay="200">
               Three structural forces — chronic skilled-labor shortage, relentlessly rising
               labor costs, and the re-localization of global supply chains — have pushed
               manufacturers to evaluate unmanned production not as a futuristic concept but
@@ -44,33 +39,22 @@ export function WhyNowSection() {
         </div>
 
         {/* Market stats */}
-        <div className="reveal grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16 lg:mb-24" data-delay="150">
-          {MARKET_STATS.map((s, i) => (
-            <div
-              key={s.label}
-              className="card-border-glow rounded-xl p-6 relative overflow-hidden"
-            >
-              <div className="chamfer-top absolute inset-0 rounded-xl pointer-events-none" />
-              <div className="relative">
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="font-display text-2xl lg:text-3xl font-semibold text-[#E6ECF5]">{s.value}</span>
-                </div>
-                <p className="text-[11px] font-mono uppercase tracking-wider text-[#8A94A6] leading-snug">
-                  {s.label}
-                </p>
-                <div className={`mt-4 h-1 rounded-full bg-gradient-to-r ${
-                  s.tint === "cyan" ? "from-[#00E5FF] to-[#0088FF]" :
-                  s.tint === "violet" ? "from-[#7B61FF] to-[#00E5FF]" :
-                  s.tint === "amber" ? "from-[#FF9F0A] to-[#FF5E3A]" :
-                  "from-[#30D878] to-[#00E5FF]"
-                } opacity-60`} />
+        <div className="reveal grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16 lg:mb-24" data-delay="150">
+          {MARKET_STATS.map((s) => (
+            <div key={s.label} className="card-neutral rounded-xl p-6">
+              <div className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-2">{s.value}</div>
+              <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground leading-snug">
+                {s.label}
+              </p>
+              <div className="mt-4 h-1 rounded-full bg-foreground/15 overflow-hidden">
+                <div className="h-full w-2/3 rounded-full bg-foreground/60" />
               </div>
             </div>
           ))}
         </div>
 
         {/* Three drivers */}
-        <div className="grid md:grid-cols-3 gap-4 lg:gap-6 mb-24">
+        <div className="grid md:grid-cols-3 gap-4 mb-24">
           {[
             {
               title: "Structural labor shortage",
@@ -85,15 +69,12 @@ export function WhyNowSection() {
               desc: "Multi-modal models now do in minutes what senior process engineers used to do in days — quoting, CAM programming, quality inspection — at global scale.",
             },
           ].map((d, i) => (
-            <div key={d.title} className="reveal relative" data-delay={`${i * 100}`}>
-              <div className="card-border-glow rounded-lg p-7 h-full">
-                <div className="chamfer-top absolute inset-0 rounded-lg pointer-events-none" />
-                <div className="font-mono text-[10px] tracking-widest text-[#00E5FF]/80 mb-3">
-                  DRIVER 0{i + 1}
-                </div>
-                <h4 className="font-display text-lg font-semibold text-[#E6ECF5] mb-3">{d.title}</h4>
-                <p className="text-[13px] text-[#8A94A6] leading-relaxed">{d.desc}</p>
+            <div key={d.title} className="reveal card-neutral rounded-xl p-7 h-full" data-delay={`${i * 80}`}>
+              <div className="font-mono text-[10px] tracking-widest text-muted-foreground mb-3 uppercase">
+                Driver 0{i + 1}
               </div>
+              <h4 className="font-display text-lg font-semibold text-foreground mb-3">{d.title}</h4>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">{d.desc}</p>
             </div>
           ))}
         </div>
@@ -102,13 +83,13 @@ export function WhyNowSection() {
         <div>
           <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
             <div>
-              <div className="reveal label-industrial mb-4">{"//"} Partnership Process</div>
-              <h3 className="reveal font-display text-3xl md:text-4xl font-semibold text-[#E6ECF5]" data-delay="100">
+              <div className="reveal label-industrial mb-4">Partnership Process</div>
+              <h3 className="reveal font-display text-3xl md:text-4xl font-semibold text-foreground tracking-tight" data-delay="100">
                 From first contact to factory go-live
               </h3>
             </div>
-            <div className="reveal flex items-center gap-2 text-sm text-[#8A94A6]" data-delay="200">
-              <Globe size={15} className="text-[#00E5FF]" />
+            <div className="reveal flex items-center gap-2 text-sm text-muted-foreground" data-delay="200">
+              <Globe size={15} />
               <span>Standard timeline: ~5–8 months</span>
             </div>
           </div>
@@ -117,19 +98,19 @@ export function WhyNowSection() {
             {PROCESS_STEPS.map((s, i) => (
               <div
                 key={s.num}
-                className="reveal card-border-glow rounded-lg p-6 relative"
+                className="reveal card-neutral rounded-xl p-6"
                 data-delay={`${i * 60}`}
               >
                 <div className="flex items-center justify-between mb-5">
-                  <span className="font-mono text-2xl font-semibold text-[#00E5FF]/40">{s.num}</span>
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-[#8A94A6]">
-                    <TrendingUp size={10} className="text-[#FF9F0A]" />
+                  <span className="font-mono text-2xl font-semibold text-muted-foreground">{s.num}</span>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
+                    <TrendingUp size={10} />
                     {s.weeks}
                   </span>
                 </div>
-                <s.icon size={20} className="text-[#00E5FF] mb-3" strokeWidth={1.6} />
-                <h4 className="font-display text-[15px] font-semibold text-[#E6ECF5] mb-1.5">{s.title}</h4>
-                <p className="text-[12.5px] text-[#8A94A6] leading-relaxed">{s.desc}</p>
+                <s.icon size={20} className="text-foreground mb-3" strokeWidth={1.7} />
+                <h4 className="font-display text-[15px] font-semibold text-foreground mb-1.5">{s.title}</h4>
+                <p className="text-[12.5px] text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>

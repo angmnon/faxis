@@ -3,8 +3,7 @@
 import * as React from "react";
 
 /**
- * Animated "telemetry strip" — simulated live factory metrics scrolling.
- * Acts as a dynamic, industrial-looking data band between sections.
+ * Simulated live factory metrics scrolling in a neutral data band.
  */
 const METRICS = [
   { code: "FXP-01", label: "3D-PRINT FARM", cell: "CELL-A07", status: "RUN", load: 92 },
@@ -22,11 +21,15 @@ const METRICS = [
 ];
 
 function StatusDot({ status }: { status: string }) {
-  const color = status === "RUN" ? "#30D878" : status === "QUEUE" ? "#FF9F0A" : "#00E5FF";
   return (
     <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: color }} />
-      <span className="relative inline-flex rounded-full h-1.5 w-1.5" style={{ background: color }} />
+      {status === "RUN" && (
+        <span className="animate-pulse-dot absolute inline-flex h-full w-full rounded-full bg-foreground opacity-60" />
+      )}
+      <span
+        className="relative inline-flex rounded-full h-1.5 w-1.5"
+        style={{ background: status === "RUN" ? "currentColor" : "transparent", color: "inherit", border: status === "RUN" ? "none" : "1px solid var(--muted-foreground)" }}
+      />
     </span>
   );
 }
@@ -34,37 +37,28 @@ function StatusDot({ status }: { status: string }) {
 export function TelemetryStrip() {
   const items = [...METRICS, ...METRICS];
   return (
-    <div className="relative py-6 border-y border-[rgba(138,148,166,0.1)] bg-[#05080D] overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#05070A] via-transparent to-[#05070A] z-10 pointer-events-none" />
-      <div className="flex animate-marquee gap-4 whitespace-nowrap w-max">
+    <div className="relative py-5 border-y border-border bg-muted/30 overflow-hidden">
+      <div className="flex animate-marquee gap-3 whitespace-nowrap w-max">
         {items.map((m, i) => (
           <div
             key={i}
-            className="flex items-center gap-3 px-4 py-2 rounded-md border border-[rgba(138,148,166,0.12)] bg-[rgba(15,20,28,0.6)] font-mono text-[11px]"
+            className="flex items-center gap-3 px-4 py-2 rounded-full border border-border bg-card font-mono text-[11px] text-muted-foreground"
           >
             <StatusDot status={m.status} />
-            <span className="text-[#00E5FF] tracking-wider">{m.code}</span>
-            <span className="text-[#8A94A6]">{m.label}</span>
-            <span className="text-[#5A6474]">/</span>
-            <span className="text-[#B8C2D1]">{m.cell}</span>
-            <span className="text-[#5A6474]">/</span>
-            <span
-              className="tracking-wider"
-              style={{ color: m.status === "RUN" ? "#30D878" : m.status === "QUEUE" ? "#FF9F0A" : "#00E5FF" }}
-            >
-              {m.status}
-            </span>
+            <span className="text-foreground tracking-wider">{m.code}</span>
+            <span>{m.label}</span>
+            <span className="opacity-50">/</span>
+            <span>{m.cell}</span>
+            <span className="opacity-50">/</span>
+            <span className="uppercase">{m.status}</span>
             {m.load > 0 && (
               <>
-                <span className="text-[#5A6474]">/</span>
-                <span className="text-[#B8C2D1]">LOAD {m.load}%</span>
-                <span className="w-10 h-1 bg-[rgba(138,148,166,0.15)] rounded-full overflow-hidden">
+                <span className="opacity-50">/</span>
+                <span>LOAD {m.load}%</span>
+                <span className="w-10 h-1 bg-foreground/15 rounded-full overflow-hidden">
                   <span
-                    className="block h-full rounded-full"
-                    style={{
-                      width: `${m.load}%`,
-                      background: m.load > 90 ? "linear-gradient(90deg,#FF9F0A,#FF5E3A)" : "linear-gradient(90deg,#00E5FF,#30D878)",
-                    }}
+                    className="block h-full rounded-full bg-foreground/60"
+                    style={{ width: `${m.load}%` }}
                   />
                 </span>
               </>

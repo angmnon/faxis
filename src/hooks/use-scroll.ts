@@ -13,6 +13,7 @@ export function useReveal() {
   const ioRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
+    document.documentElement.classList.add("js");
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

@@ -106,46 +106,37 @@ export default function SolutionsPage() {
       <PageHeader
         label="Solutions"
         eyebrow="// Product Matrix"
-        title={<>Four autonomous factory lines. <span className="text-gradient-cyan-soft">One operating system.</span></>}
+        title={<>Four autonomous factory lines. One operating system.</>}
         subtitle="FAXIS.AI delivers complete lights-out factory products across 3D printing, CNC machining, sheet metal fabrication, and injection molding. Every line runs on the same AI digital thread."
       />
 
       <section className="py-20 lg:py-28">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-10 space-y-24">
+        <div className="max-w-6xl mx-auto px-6 space-y-24">
           {SOLUTIONS.map((s, i) => (
             <div key={s.id} id={s.id} className="grid lg:grid-cols-12 gap-10 items-start scroll-mt-28">
               <div className={`lg:col-span-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
                 <div className="reveal">
-                  <div className="aspect-[4/3] rounded-xl relative overflow-hidden border border-[rgba(138,148,166,0.15)] bg-[#080D15]">
-                    {/* Abstract visualization */}
-                    <div className="absolute inset-0 bg-grid-fine opacity-30" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-[#00E5FF]/20 blur-[80px] rounded-full scale-150" />
-                        <s.icon size={120} className="text-[#00E5FF]/80 relative z-10 animate-float-slow" strokeWidth={1} />
-                      </div>
-                    </div>
-                    {/* HUD corners */}
-                    <div className="absolute top-4 left-4 text-[10px] font-mono text-[#00E5FF]/70 tracking-widest">
+                  <div className="aspect-[4/3] rounded-2xl relative overflow-hidden border border-border bg-muted/40 flex items-center justify-center">
+                    <s.icon size={100} className="text-foreground/70 animate-float-slow" strokeWidth={1} />
+                    <div className="absolute top-4 left-4 text-[10px] font-mono text-muted-foreground tracking-widest">
                       {s.code}
-                      <div className="mt-1 text-[#8A94A6]">{s.subtitle}</div>
+                      <div className="mt-1">{s.subtitle}</div>
                     </div>
                     <div className="absolute bottom-4 right-4 text-right">
-                      <div className="flex items-center gap-1.5 justify-end text-[10px] font-mono text-[#30D878] tracking-widest">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#30D878] animate-pulse" />
+                      <div className="flex items-center gap-1.5 justify-end text-[10px] font-mono text-foreground tracking-widest">
+                        <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse-dot" />
                         ONLINE
                       </div>
-                      <div className="text-[10px] font-mono text-[#5A6474] mt-1">LIGHTS-OUT</div>
+                      <div className="text-[10px] font-mono text-muted-foreground mt-1">LIGHTS-OUT</div>
                     </div>
                   </div>
 
                   {/* KPIs */}
                   <div className="grid grid-cols-4 gap-3 mt-4">
                     {s.kpis.map((k) => (
-                      <div key={k.label} className="card-border-glow rounded-lg p-3 text-center relative">
-                        <div className="chamfer-top absolute inset-0 rounded-lg pointer-events-none" />
-                        <div className="font-display text-lg font-semibold text-[#00E5FF] relative">{k.value}</div>
-                        <div className="text-[9px] font-mono uppercase tracking-wider text-[#8A94A6] mt-1 relative leading-tight">{k.label}</div>
+                      <div key={k.label} className="card-neutral rounded-lg p-3 text-center">
+                        <div className="font-display text-lg font-semibold text-foreground">{k.value}</div>
+                        <div className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground mt-1 leading-tight">{k.label}</div>
                       </div>
                     ))}
                   </div>
@@ -155,29 +146,29 @@ export default function SolutionsPage() {
               <div className={`lg:col-span-7 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
                 <div className="reveal" data-delay="150">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="font-mono text-[10px] tracking-widest text-[#8A94A6]">{s.code}</span>
-                    <span className="w-1 h-1 rounded-full bg-[#00E5FF]" />
-                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[rgba(48,216,120,0.1)] border border-[rgba(48,216,120,0.25)] text-[10px] font-mono tracking-wider text-[#30D878] uppercase">
-                      <span className="w-1 h-1 rounded-full bg-[#30D878] animate-pulse" /> Production Validated
+                    <span className="font-mono text-[10px] tracking-widest text-muted-foreground">{s.code}</span>
+                    <span className="w-1 h-1 rounded-full bg-foreground" />
+                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-border text-[10px] font-mono tracking-wider text-muted-foreground uppercase">
+                      Production Validated
                     </span>
                   </div>
-                  <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#E6ECF5] leading-tight mb-2">
+                  <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground leading-tight mb-2 tracking-tight">
                     {s.title}
                   </h2>
-                  <p className="text-xs font-mono text-[#00E5FF]/80 tracking-wider uppercase mb-5">
+                  <p className="text-xs font-mono text-muted-foreground tracking-wider uppercase mb-5">
                     {s.subtitle}
                   </p>
-                  <p className="text-[#8A94A6] text-base leading-relaxed mb-6">
+                  <p className="text-muted-foreground text-base leading-relaxed mb-6">
                     {s.longDesc}
                   </p>
 
-                  <h4 className="font-display text-sm font-semibold text-[#E6ECF5] mb-4 uppercase tracking-wider">
+                  <h4 className="font-display text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">
                     Core Capabilities
                   </h4>
                   <ul className="grid sm:grid-cols-2 gap-2.5 mb-7">
                     {s.capabilities.map((c) => (
-                      <li key={c} className="flex items-start gap-2 text-[13px] text-[#B8C2D1]">
-                        <Check size={14} className="text-[#00E5FF] mt-0.5 flex-shrink-0" strokeWidth={2.5} />
+                      <li key={c} className="flex items-start gap-2 text-[13px] text-foreground/80">
+                        <Check size={14} className="text-foreground mt-0.5 flex-shrink-0" strokeWidth={2.5} />
                         {c}
                       </li>
                     ))}
@@ -186,7 +177,7 @@ export default function SolutionsPage() {
                   <div className="flex flex-wrap gap-3">
                     <Link href="/contact" className="btn-primary">
                       Discuss Deployment
-                      <ArrowUpRight size={14} strokeWidth={2.5} />
+                      <ArrowUpRight size={14} strokeWidth={2.2} />
                     </Link>
                     <Link href="/contact" className="btn-secondary">
                       Request Technical Brief

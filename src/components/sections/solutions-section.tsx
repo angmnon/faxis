@@ -24,7 +24,6 @@ const SOLUTIONS = [
       "In-situ visual anomaly detection",
       "Zero-operator night shifts",
     ],
-    accent: "from-[#00E5FF] to-[#0088FF]",
   },
   {
     id: "cnc",
@@ -45,7 +44,6 @@ const SOLUTIONS = [
       "Adaptive 5-axis assist for experts",
       "Tiered automation strategy (robust delivery)",
     ],
-    accent: "from-[#7B61FF] to-[#00E5FF]",
   },
   {
     id: "sheet-metal",
@@ -66,7 +64,6 @@ const SOLUTIONS = [
       "Robotic welding path generation",
       "Vision-based weld & cosmetic QC",
     ],
-    accent: "from-[#FF9F0A] to-[#FF5E3A]",
   },
   {
     id: "injection",
@@ -87,28 +84,22 @@ const SOLUTIONS = [
       "On-line visual defect sorting",
       "Closed-loop parameter tuning",
     ],
-    accent: "from-[#30D878] to-[#00E5FF]",
   },
 ];
 
 export function SolutionsSection() {
   return (
-    <section id="solutions" className="relative py-28 lg:py-36 bg-[#060A10]">
-      <div className="absolute inset-0 bg-grid-factory opacity-[0.06]" />
-      <div className="absolute top-0 left-0 right-0 h-px divider-glow" />
-
-      <div className="relative max-w-[1440px] mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 gap-10 mb-16 lg:mb-20">
+    <section id="solutions" className="relative py-24 lg:py-32 bg-muted/30 border-y border-border">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-10 mb-14 lg:mb-20">
           <div className="lg:col-span-7">
-            <div className="reveal label-industrial mb-5">{"//"} 02 — Product Matrix</div>
-            <h2 className="reveal font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-[#E6ECF5]" data-delay="100">
-              Four unmanned factory lines.
-              <br />
-              <span className="text-gradient-cyan-soft">One operating system.</span>
+            <div className="reveal label-industrial mb-5">02 — Product Matrix</div>
+            <h2 className="reveal font-display text-4xl md:text-5xl font-semibold leading-[1.1] tracking-tight text-foreground" data-delay="100">
+              Four unmanned factory lines. One operating system.
             </h2>
           </div>
           <div className="lg:col-span-5 lg:pt-8">
-            <p className="reveal text-[#8A94A6] text-base leading-relaxed" data-delay="200">
+            <p className="reveal text-muted-foreground text-base leading-relaxed" data-delay="200">
               FAXIS.AI has already built and validated AI-powered unmanned production across
               four of the largest manufacturing process families — a $1T+ combined market.
               Each line is a complete, deployable factory product; together they form the
@@ -117,73 +108,61 @@ export function SolutionsSection() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
+        <div className="grid md:grid-cols-2 gap-5">
           {SOLUTIONS.map((s, i) => (
             <div
               key={s.id}
-              className="reveal card-border-glow rounded-xl p-7 lg:p-9 relative overflow-hidden group"
-              data-delay={`${i * 100}`}
+              className="reveal card-neutral rounded-2xl p-7 lg:p-8 relative flex flex-col"
+              data-delay={`${i * 80}`}
             >
-              <div className="chamfer-top absolute inset-0 rounded-xl pointer-events-none" />
-
-              {/* Accent glow */}
-              <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${s.accent} opacity-[0.08] blur-[80px] group-hover:opacity-[0.16] transition-opacity`} />
-
-              <div className="relative">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-6">
-                  <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${s.accent} bg-opacity-10 border border-white/10 flex items-center justify-center relative`}
-                    style={{ background: `linear-gradient(135deg, rgba(0,229,255,0.12), rgba(123,97,255,0.06))`, borderColor: "rgba(138,148,166,0.2)" }}
-                  >
-                    <s.icon size={24} className="text-[#00E5FF]" strokeWidth={1.6} />
-                  </div>
-                  <span className="font-mono text-[10px] text-[#8A94A6] tracking-widest">
-                    {s.code}
-                  </span>
+              <div className="flex items-start justify-between mb-6">
+                <div className="w-12 h-12 rounded-xl border border-border bg-muted flex items-center justify-center">
+                  <s.icon size={22} className="text-foreground" strokeWidth={1.6} />
                 </div>
-
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[rgba(48,216,120,0.1)] border border-[rgba(48,216,120,0.25)] text-[10px] font-mono tracking-wider text-[#30D878] uppercase">
-                    <span className="w-1 h-1 rounded-full bg-[#30D878] animate-pulse" />
-                    {s.maturity}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-xl lg:text-2xl font-semibold text-[#E6ECF5] mb-1.5 leading-tight">
-                  {s.title}
-                </h3>
-                <p className="text-xs font-mono text-[#00E5FF]/80 tracking-wider uppercase mb-4">
-                  {s.subtitle}
-                </p>
-                <p className="text-sm text-[#8A94A6] leading-relaxed mb-6">
-                  {s.desc}
-                </p>
-
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 py-5 border-y border-[rgba(138,148,166,0.12)] mb-5">
-                  {s.stats.map((st) => (
-                    <div key={st.label}>
-                      <div className="font-display text-xl font-semibold text-[#E6ECF5]">{st.value}</div>
-                      <div className="text-[10px] font-mono uppercase tracking-wider text-[#8A94A6] mt-1">{st.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Highlights */}
-                <ul className="space-y-2 mb-6">
-                  {s.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-2.5 text-[13px] text-[#B8C2D1]">
-                      <Check size={14} className="text-[#00E5FF] mt-0.5 flex-shrink-0" strokeWidth={2.5} />
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link href={`/solutions#${s.id}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-[#00E5FF] group/link">
-                  <span>Explore {s.title.split(" ")[2]} Capabilities</span>
-                  <ArrowUpRight size={14} className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" strokeWidth={2.2} />
-                </Link>
+                <span className="font-mono text-[10px] text-muted-foreground tracking-widest">
+                  {s.code}
+                </span>
               </div>
+
+              <span className="inline-flex w-fit items-center gap-1.5 px-2.5 py-1 rounded-full border border-border text-[10px] font-mono tracking-wider text-muted-foreground uppercase mb-4">
+                <span className="w-1 h-1 rounded-full bg-foreground" />
+                {s.maturity}
+              </span>
+
+              <h3 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-1.5 leading-tight">
+                {s.title}
+              </h3>
+              <p className="text-xs font-mono text-muted-foreground tracking-wider uppercase mb-4">
+                {s.subtitle}
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                {s.desc}
+              </p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 py-5 border-y border-border mb-5">
+                {s.stats.map((st) => (
+                  <div key={st.label}>
+                    <div className="font-display text-xl font-semibold text-foreground">{st.value}</div>
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mt-1">{st.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Highlights */}
+              <ul className="space-y-2 mb-6 flex-grow">
+                {s.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-2.5 text-[13px] text-foreground/80">
+                    <Check size={14} className="text-foreground mt-0.5 flex-shrink-0" strokeWidth={2.5} />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+
+              <Link href={`/solutions#${s.id}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground group/link">
+                <span>Explore capabilities</span>
+                <ArrowUpRight size={14} className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" strokeWidth={2.2} />
+              </Link>
             </div>
           ))}
         </div>

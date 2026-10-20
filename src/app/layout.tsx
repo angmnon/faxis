@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollReveal } from "@/components/layout/scroll-reveal";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${process.env.COZE_PROJECT_DOMAIN_DEFAULT || "faxis.ai"}`),
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
-    title: "FAXIS.AI | The World's First AI-Powered Lights-Out Factory Network",
+    title: "FAXIS.AI | AI-Powered Lights-Out Factories",
     description:
       "End-to-end unmanned AI factories covering 3D printing, CNC, sheet metal, and injection molding. Join our global partner network.",
     siteName: "FAXIS.AI",
@@ -44,13 +45,12 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "FAXIS.AI | AI-Powered Lights-Out Factories",
-    description:
-      "Redefining global manufacturing with fully unmanned AI-driven production.",
+    description: "Redefining global manufacturing with fully unmanned AI-driven production.",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05070A",
+  themeColor: "#0a0a0a",
   width: "device-width",
   initialScale: 1,
 };
@@ -61,12 +61,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen bg-[#05070A] text-[#E6ECF5] antialiased font-sans">
-        <Navbar />
-        <main className="relative">{children}</main>
-        <Footer />
-        <ScrollReveal />
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className="min-h-screen bg-background text-foreground antialiased font-sans">
+        <ThemeProvider>
+          <Navbar />
+          <main className="relative">{children}</main>
+          <Footer />
+          <ScrollReveal />
+        </ThemeProvider>
       </body>
     </html>
   );
