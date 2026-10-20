@@ -91,11 +91,11 @@ export function MediaBand({
         }`}
       >
         {eyebrow && (
-          <div className="label-industrial mb-6" data-delay="50">{eyebrow}</div>
+          <div className="label-industrial mb-6 !text-white/70" data-delay="50">{eyebrow}</div>
         )}
-        <h2 className="display-section text-foreground">{title}</h2>
+        <h2 className="display-section text-white">{title}</h2>
         {lead && (
-          <p className={`mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl ${align === "center" ? "mx-auto" : ""}`}>
+          <p className={`mt-6 text-base md:text-lg text-white/80 leading-relaxed max-w-2xl ${align === "center" ? "mx-auto" : ""}`}>
             {lead}
           </p>
         )}

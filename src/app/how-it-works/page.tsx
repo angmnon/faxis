@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
+import { ImageBand } from "@/components/media/image-band";
 import { Card, CheckItem, Step } from "@/components/layout/primitives";
 
 export const metadata = {
@@ -61,6 +62,14 @@ export default function HowItWorksPage() {
           </div>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/machining.jpg"
+        align="left"
+        eyebrow="Engineering the cell"
+        title={<>Equipment, software, and people configured around the product.</>}
+        lead="Automation is applied where it is safe and justified; trained people own engineering, quality release, and customer decisions."
+      />
 
       <section className="py-20 lg:py-28 bg-muted/30 border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
@@ -122,6 +131,14 @@ export default function HowItWorksPage() {
           </div>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/warehouse.jpg"
+        align="center"
+        eyebrow="From pilot to scale"
+        title={<>Prove the model, then expand on evidence.</>}
+        lead="SKUs are introduced incrementally; capacity grows only after acceptance criteria and operating economics are demonstrated."
+      />
 
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">

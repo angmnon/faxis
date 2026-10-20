@@ -32,15 +32,6 @@ export function Navbar() {
           : "bg-transparent border-b border-transparent",
       ].join(" ")}
     >
-      {/* Utility strip */}
-      <div className="border-b border-border/60">
-        <div className="max-w-6xl mx-auto px-6 py-1.5 flex items-center justify-center">
-          <span className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
-            Global manufacturing. Designed around local demand.
-          </span>
-        </div>
-      </div>
-
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center" aria-label="FAXIS.AI Home">

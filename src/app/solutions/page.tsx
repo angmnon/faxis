@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Store, Cpu, Home, Wrench, Archive, Boxes, SlidersHorizontal, Laptop, Printer, Cog, Layers, Container } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
+import { ImageBand } from "@/components/media/image-band";
 import { Card, CheckItem } from "@/components/layout/primitives";
 
 export const metadata = {
@@ -96,6 +97,14 @@ export default function SolutionsPage() {
           </div>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/port.jpg"
+        align="left"
+        eyebrow="Route planning"
+        title={<>Each product takes the route its business case supports.</>}
+        lead="Processes, suppliers, equipment, quality, and operations are configured around the product and the target market."
+      />
 
       <section className="py-20 lg:py-28 bg-muted/30 border-y border-border">
         <div className="max-w-6xl mx-auto px-6">

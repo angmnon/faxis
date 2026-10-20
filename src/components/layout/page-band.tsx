@@ -22,17 +22,17 @@ export function PageBand({ eyebrow, title, subtitle, label }: PageBandProps) {
         {label && (
           <div className="reveal inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse-dot" />
-            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-white/70">
               {label}
             </span>
           </div>
         )}
-        <div className="reveal label-industrial mb-5">{eyebrow}</div>
-        <h1 className="reveal display-section text-foreground max-w-3xl" data-delay="100">
+        <div className="reveal label-industrial mb-5 !text-white/70">{eyebrow}</div>
+        <h1 className="reveal display-section text-white max-w-3xl" data-delay="100">
           {title}
         </h1>
         {subtitle && (
-          <p className="reveal mt-6 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed" data-delay="200">
+          <p className="reveal mt-6 text-base md:text-lg text-white/75 max-w-2xl leading-relaxed" data-delay="200">
             {subtitle}
           </p>
         )}

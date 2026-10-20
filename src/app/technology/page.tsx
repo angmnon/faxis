@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Search, Workflow, Bot, ClipboardCheck, BarChart3, SlidersHorizontal, ShieldCheck, Users } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
+import { ImageBand } from "@/components/media/image-band";
 import { Card, CheckItem } from "@/components/layout/primitives";
 
 export const metadata = {
@@ -90,6 +91,14 @@ export default function TechnologyPage() {
         </div>
       </section>
 
+      <ImageBand
+        src="/media/machining.jpg"
+        align="left"
+        eyebrow="Where machines meet software"
+        title={<>Data flows from the cell to the decisions that run it.</>}
+        lead="Equipment, quality stations, and planning are linked so status, output, and exceptions are visible across the network."
+      />
+
       <section className="py-20 lg:py-28 bg-muted/30 border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <SectionHeader eyebrow="Design Principles" title={<>Built for reliable operation, not marketing tiers.</>} />
@@ -124,6 +133,13 @@ export default function TechnologyPage() {
           </div>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/network-globe.jpg"
+        align="center"
+        eyebrow="One operating layer"
+        title={<>Local sites run locally. Standards stay consistent globally.</>}
+      />
 
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">

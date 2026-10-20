@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Building2, Handshake, Factory, Wrench, MapPin, ShieldCheck, Gauge } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
+import { ImageBand } from "@/components/media/image-band";
 import { Card, CheckItem } from "@/components/layout/primitives";
 
 export const metadata = {
@@ -56,6 +57,14 @@ export default function NetworkPage() {
         subtitle="FAXIS.AI builds a network of qualified local manufacturing capacity—configured around market demand, not copied from a single template. Each location is evaluated for the product it can realistically serve, the partners it can rely on, and the operating controls it must meet."
       />
 
+      <ImageBand
+        src="/media/network-globe.jpg"
+        align="center"
+        eyebrow="Demand-driven"
+        title={<>Capacity placed where customers buy, connected by common standards.</>}
+        lead="Dedicated sites, joint ventures, contract manufacturers, transformed factories, and specialist suppliers under one visibility layer."
+      />
+
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <SectionHeader
@@ -103,6 +112,14 @@ export default function NetworkPage() {
           </p>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/port.jpg"
+        align="left"
+        eyebrow="Trade & logistics"
+        title={<>Less dependence on a single long shipping route.</>}
+        lead="Regional capacity offers a qualified alternative when long cycles and concentrated sourcing become a risk."
+      />
 
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">

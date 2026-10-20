@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Compass, Users, ShieldCheck, Globe2 } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
+import { ImageBand } from "@/components/media/image-band";
 import { Card } from "@/components/layout/primitives";
 
 export const metadata = {
@@ -43,6 +44,13 @@ export default function AboutPage() {
         subtitle="FAXIS.AI was created around a simple observation: as demand fragments and supply chains lengthen, brands need qualified production closer to their customers—and most cannot design, automate, and operate that capability on their own."
       />
 
+      <ImageBand
+        src="/media/warehouse.jpg"
+        align="center"
+        eyebrow="Our observation"
+        title={<>Brands need production closer to customers—without building it all themselves.</>}
+      />
+
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <SectionHeader
@@ -80,6 +88,14 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/port.jpg"
+        align="left"
+        eyebrow="Global coordination"
+        title={<>Local delivery, global standards.</>}
+        lead="Capacity sits near demand; planning, quality, and operating knowledge stay coordinated across the network."
+      />
 
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { PageBand } from "@/components/layout/page-band";
 import { SectionHeader } from "@/components/layout/section-header";
+import { ImageBand } from "@/components/media/image-band";
 import { Card, CheckItem, Step, Pill } from "@/components/layout/primitives";
 
 export const metadata = {
@@ -114,6 +115,14 @@ export default function BrandsPage() {
         </div>
       </section>
 
+      <ImageBand
+        src="/media/warehouse.jpg"
+        align="left"
+        eyebrow="Closer to the shelf"
+        title={<>Shorter route from production to the customer.</>}
+        lead="Local capacity can improve replenishment responsiveness and reduce the inventory tied up between factory and shelf."
+      />
+
       {/* What we need from you */}
       <section className="py-20 lg:py-28 bg-muted/30 border-y border-border" id="assessment">
         <div className="max-w-6xl mx-auto px-6">
@@ -199,6 +208,14 @@ export default function BrandsPage() {
           </div>
         </div>
       </section>
+
+      <ImageBand
+        src="/media/port.jpg"
+        align="center"
+        eyebrow="Global demand"
+        title={<>Trade routes are lengthening. Capacity can move nearer to demand.</>}
+        lead="A second qualified production option near the destination market reduces dependence on a single long route."
+      />
 
       {/* Final CTA */}
       <section className="py-20 lg:py-28">
