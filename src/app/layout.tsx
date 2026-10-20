@@ -43,11 +43,13 @@ export const metadata: Metadata = {
     siteName: "FAXIS.AI",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/media/network-globe.jpg", width: 1200, height: 630, alt: "FAXIS.AI local manufacturing network" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "FAXIS.AI | Local Manufacturing for Global Brands",
     description: "Manufacturing, closer to every market. Local production. Global coordination. AI-powered operations.",
+    images: ["/media/network-globe.jpg"],
   },
 };
 

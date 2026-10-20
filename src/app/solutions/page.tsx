@@ -155,6 +155,30 @@ export default function SolutionsPage() {
           </div>
         </div>
       </section>
+
+      {/* Final CTA */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="card-neutral rounded-2xl p-10 lg:p-14 text-center">
+            <h2 className="reveal font-display text-3xl md:text-4xl font-semibold tracking-tight text-foreground max-w-2xl mx-auto leading-tight">
+              Have a product family worth assessing locally?
+            </h2>
+            <p className="reveal text-muted-foreground max-w-xl mx-auto mt-6 leading-relaxed">
+              Start with the SKU group and target market; we assess feasibility, total landed cost, and qualification needs before any commitment.
+            </p>
+            <div className="reveal flex flex-wrap justify-center gap-3 mt-10">
+              <Link href="/contact?intent=brand" className="btn-primary">
+                Assess a Product Family
+                <ArrowUpRight size={15} strokeWidth={2.2} />
+              </Link>
+              <Link href="/how-it-works" className="btn-secondary">
+                <ArrowRight size={14} />
+                See the Program Path
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

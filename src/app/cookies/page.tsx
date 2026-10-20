@@ -27,7 +27,6 @@ export default function CookiesPage() {
               <ul className="list-disc pl-5 space-y-2">
                 <li><strong className="text-foreground">Strictly necessary cookies:</strong> Required for basic website functionality and security. These cannot be disabled.</li>
                 <li><strong className="text-foreground">Analytics cookies:</strong> Anonymized aggregated data about page visits and usage patterns, used for internal reporting only.</li>
-                <li><strong className="text-foreground">Preference cookies:</strong> Remember your display preferences (such as dark mode) during your session.</li>
               </ul>
             </div>
             <div>
