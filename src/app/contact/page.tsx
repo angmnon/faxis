@@ -1,244 +1,201 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
-import { Mail, MapPin, Globe2, ArrowUpRight, CheckCircle2, Send, Building2, UserRound, Briefcase, MessageSquare } from "lucide-react";
+import { CheckCircle2, Send, ArrowUpRight, ShieldAlert, Mail } from "lucide-react";
 
-const REGIONS = [
-  { name: "Asia-Pacific (HQ)", flag: "SG", desc: "Singapore headquarters & Asia-Pac partnerships", email: "apac@faxis.ai" },
-  { name: "North America", flag: "US", desc: "US, Canada & Mexico partner development", email: "namerica@faxis.ai" },
-  { name: "Europe", flag: "EU", desc: "EU, UK & EFTA regional partners", email: "europe@faxis.ai" },
-  { name: "Middle East & Africa", flag: "AE", desc: "GCC, MENA & African partnerships", email: "mena@faxis.ai" },
+const IDENTITIES = [
+  { value: "brand", label: "Brand or retailer" },
+  { value: "partner", label: "Manufacturing or industrial partner" },
+  { value: "investor", label: "Investment, site or JV partner" },
+  { value: "supplier", label: "Supplier or technology partner" },
+  { value: "media", label: "Media or other" },
 ];
 
-const MODELS = [
-  { value: "regional", label: "Regional Master Partner" },
-  { value: "jv", label: "Joint Venture Factory" },
-  { value: "license", label: "License & Operate" },
-  { value: "unsure", label: "Not sure yet — let's discuss" },
-];
+const INTENT_DEFAULT: Record<string, string> = {
+  brand: "brand",
+  partner: "partner",
+  investor: "investor",
+};
+
+const inputCls =
+  "w-full bg-transparent border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-muted-foreground transition-colors";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = React.useState(false);
-  const [formData, setFormData] = React.useState({
-    name: "", company: "", email: "", region: "Asia-Pacific (HQ)", model: "unsure", message: "",
+  const [identity, setIdentity] = React.useState("brand");
+  const [form, setForm] = React.useState({
+    name: "",
+    company: "",
+    email: "",
+    markets: "",
+    products: "",
+    currentRoute: "",
+    demand: "",
+    message: "",
   });
+  const [consent, setConsent] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(false);
+
+  React.useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get("intent");
+    if (p && INTENT_DEFAULT[p]) setIdentity(INTENT_DEFAULT[p]);
+  }, []);
+
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consent) return;
     setLoading(true);
     await new Promise((r) => setTimeout(r, 900));
     setLoading(false);
     setSubmitted(true);
   };
 
+  const mailto = `mailto:angmon126@gmail.com?subject=${encodeURIComponent("FAXIS.AI enquiry — " + form.company)}`;
+
   return (
     <>
       <PageHeader
-        label="Get in Touch"
+        label="Contact"
         eyebrow="// Contact"
-        title={<>Start the partnership conversation.</>}
-        subtitle="Share a bit about your organization and target market. Our partnership team will respond within two business days to schedule a discovery call."
+        title={<>Start a conversation.</>}
+        subtitle="Tell us who you are, what you make or offer, and which market matters most. This form collects an initial enquiry; we respond to meaningful submissions and take next steps under a written plan."
       />
 
-      <section className="py-20 lg:py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-10">
-            {/* Form */}
-            <div className="lg:col-span-7">
-              {submitted ? (
-                <div className="card-neutral rounded-2xl p-10 lg:p-14 text-center">
-                  <CheckCircle2 size={52} className="text-foreground mx-auto mb-5" strokeWidth={1.5} />
-                  <h3 className="font-display text-2xl font-semibold text-foreground mb-3">
-                    Inquiry received.
-                  </h3>
-                  <p className="text-muted-foreground max-w-md mx-auto mb-6">
-                    Thank you, {formData.name || "partner"}. Our regional partnership team will
-                    be in touch within 2 business days to schedule a discovery call.
-                  </p>
-                  <button onClick={() => setSubmitted(false)} className="btn-secondary">
-                    Send Another Inquiry
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="card-neutral rounded-2xl p-8 lg:p-10">
-                  <h3 className="font-display text-2xl font-semibold text-foreground mb-2">Partnership Inquiry</h3>
-                  <p className="text-sm text-muted-foreground mb-8">All fields required unless marked optional.</p>
-
-                  <div className="grid md:grid-cols-2 gap-5">
-                    <Field label="Full Name" icon={UserRound}>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-transparent outline-none text-foreground placeholder-muted-foreground text-sm"
-                        placeholder="Jane Smith"
-                      />
-                    </Field>
-                    <Field label="Company / Organization" icon={Building2}>
-                      <input
-                        type="text"
-                        required
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full bg-transparent outline-none text-foreground placeholder-muted-foreground text-sm"
-                        placeholder="Acme Industrial Holdings"
-                      />
-                    </Field>
-                    <Field label="Business Email" icon={Mail}>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-transparent outline-none text-foreground placeholder-muted-foreground text-sm"
-                        placeholder="jane@company.com"
-                      />
-                    </Field>
-                    <Field label="Target Region" icon={Globe2}>
-                      <select
-                        value={formData.region}
-                        onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-                        className="w-full bg-transparent outline-none text-foreground text-sm appearance-none cursor-pointer"
-                      >
-                        {REGIONS.map((r) => (
-                          <option key={r.name} value={r.name}>{r.name}</option>
-                        ))}
-                      </select>
-                    </Field>
-                  </div>
-
-                  <div className="mt-5">
-                    <label className="block text-[11px] font-mono uppercase tracking-widest text-muted-foreground mb-3">
-                      <Briefcase size={11} className="inline mr-1.5 -mt-0.5" />
-                      Partnership Model of Interest
-                    </label>
-                    <div className="grid sm:grid-cols-2 gap-2.5">
-                      {MODELS.map((m) => (
-                        <label
-                          key={m.value}
-                          className={[
-                            "flex items-center gap-2.5 p-3 rounded-lg border cursor-pointer transition-all text-sm",
-                            formData.model === m.value
-                              ? "border-foreground/60 bg-muted text-foreground"
-                              : "border-border text-muted-foreground hover:border-muted-foreground",
-                          ].join(" ")}
-                        >
-                          <input
-                            type="radio"
-                            name="model"
-                            value={m.value}
-                            checked={formData.model === m.value}
-                            onChange={(e) => setFormData({ ...formData, model: e.target.value })}
-                            className="hidden"
-                          />
-                          <span className={[
-                            "w-4 h-4 rounded-full border-2 flex-shrink-0 flex items-center justify-center",
-                            formData.model === m.value ? "border-foreground" : "border-muted-foreground",
-                          ].join(" ")}>
-                            {formData.model === m.value && <span className="w-1.5 h-1.5 rounded-full bg-foreground" />}
-                          </span>
-                          {m.label}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mt-5">
-                    <Field label="Tell us about your business & goals" icon={MessageSquare} multiline>
-                      <textarea
-                        required
-                        rows={5}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full bg-transparent outline-none text-foreground placeholder-muted-foreground text-sm resize-none"
-                        placeholder="Your background, manufacturing relationships, target market, and timeline..."
-                      />
-                    </Field>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="btn-primary w-full justify-center mt-7 !py-3.5 disabled:opacity-60"
-                  >
-                    {loading ? (
-                      <>Processing...</>
-                    ) : (
-                      <>
-                        <Send size={15} strokeWidth={2} />
-                        Submit Partnership Inquiry
-                        <ArrowUpRight size={15} strokeWidth={2.2} />
-                      </>
-                    )}
-                  </button>
-
-                  <p className="text-[11px] font-mono text-muted-foreground mt-4 text-center">
-                    We respond within 2 business days. All inquiries are treated in strict confidence.
-                  </p>
-                </form>
-              )}
+      <section className="pb-24 lg:pb-32">
+        <div className="max-w-3xl mx-auto px-6">
+          {submitted ? (
+            <div className="card-neutral rounded-2xl p-10 lg:p-14 text-center reveal">
+              <CheckCircle2 size={52} className="text-foreground mx-auto mb-5" strokeWidth={1.5} />
+              <h3 className="font-display text-2xl font-semibold text-foreground mb-3">Enquiry noted.</h3>
+              <p className="text-muted-foreground max-w-md mx-auto mb-6 leading-relaxed">
+                Thank you, {form.name || "there"}. Your enquiry has been recorded on this page. For a
+                reliable direct route, write to us at the address below and reference your company and
+                product category.
+              </p>
+              <a href={mailto} className="btn-primary">
+                <Mail size={14} />
+                Email angmon126@gmail.com
+                <ArrowUpRight size={14} strokeWidth={2.2} />
+              </a>
+              <button onClick={() => setSubmitted(false)} className="btn-secondary mt-4">
+                Send another enquiry
+              </button>
             </div>
-
-            {/* Regional contacts */}
-            <div className="lg:col-span-5">
-              <h3 className="font-display text-xl font-semibold text-foreground mb-2">Regional Contacts</h3>
-              <p className="text-sm text-muted-foreground mb-6">Reach out to the team closest to your market.</p>
-
-              <div className="space-y-3 mb-8">
-                {REGIONS.map((r, i) => (
-                  <div key={r.name} className="reveal card-neutral rounded-lg p-5" data-delay={`${i * 70}`}>
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-md border border-border bg-muted flex items-center justify-center flex-shrink-0 font-mono text-xs font-bold text-foreground">
-                        {r.flag}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-display text-[15px] font-semibold text-foreground mb-1">{r.name}</h4>
-                        <p className="text-[12px] text-muted-foreground mb-2 leading-relaxed">{r.desc}</p>
-                        <a href={`mailto:${r.email}`} className="inline-flex items-center gap-1 text-[12px] text-foreground font-mono hover:underline">
-                          <Mail size={11} />
-                          {r.email}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+          ) : (
+            <form onSubmit={handleSubmit} className="card-neutral rounded-2xl p-7 lg:p-10 space-y-6 reveal">
+              {/* Identity */}
+              <div>
+                <label className="label-industrial block mb-3">I am contacting as</label>
+                <div className="grid sm:grid-cols-2 gap-2">
+                  {IDENTITIES.map((o) => (
+                    <button
+                      type="button"
+                      key={o.value}
+                      onClick={() => setIdentity(o.value)}
+                      className={`text-left px-4 py-3 rounded-xl border text-sm transition-colors ${
+                        identity === o.value
+                          ? "border-foreground bg-accent text-foreground"
+                          : "border-border text-muted-foreground hover:border-muted-foreground"
+                      }`}
+                    >
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div className="card-neutral rounded-lg p-6 flex items-start gap-3">
-                <MapPin size={18} className="text-foreground flex-shrink-0 mt-0.5" strokeWidth={1.6} />
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-display text-sm font-semibold text-foreground mb-1.5">Global Headquarters</h4>
-                  <p className="text-[12px] text-muted-foreground leading-relaxed font-mono">
-                    FAXIS.AI Pte. Ltd.<br />
-                    Singapore
-                  </p>
+                  <label className="label-industrial block mb-2">Full name *</label>
+                  <input required className={inputCls} value={form.name} onChange={set("name")} placeholder="Your name" />
+                </div>
+                <div>
+                  <label className="label-industrial block mb-2">Company / organization *</label>
+                  <input required className={inputCls} value={form.company} onChange={set("company")} placeholder="Company" />
                 </div>
               </div>
-            </div>
-          </div>
+
+              <div>
+                <label className="label-industrial block mb-2">Work email *</label>
+                <input required type="email" className={inputCls} value={form.email} onChange={set("email")} placeholder="you@company.com" />
+              </div>
+
+              <div>
+                <label className="label-industrial block mb-2">Target market(s) *</label>
+                <input required className={inputCls} value={form.markets} onChange={set("markets")} placeholder="e.g. Southeast Asia, Gulf, North America" />
+              </div>
+
+              {identity === "brand" && (
+                <>
+                  <div>
+                    <label className="label-industrial block mb-2">Product category / what you make</label>
+                    <input className={inputCls} value={form.products} onChange={set("products")} placeholder="e.g. small kitchen appliances, storage furniture" />
+                  </div>
+                  <div>
+                    <label className="label-industrial block mb-2">Current supply route</label>
+                    <input className={inputCls} value={form.currentRoute} onChange={set("currentRoute")} placeholder="Where products are made and shipped from today" />
+                  </div>
+                  <div>
+                    <label className="label-industrial block mb-2">Estimated annual demand</label>
+                    <input className={inputCls} value={form.demand} onChange={set("demand")} placeholder="Units or volume range, approximate" />
+                  </div>
+                </>
+              )}
+
+              {identity === "partner" && (
+                <div>
+                  <label className="label-industrial block mb-2">Your facility or capability</label>
+                  <textarea rows={3} className={inputCls} value={form.products} onChange={set("products")} placeholder="Location, equipment, product categories, current operating state" />
+                </div>
+              )}
+
+              {identity === "investor" && (
+                <div>
+                  <label className="label-industrial block mb-2">Site, capital, or JV interest</label>
+                  <textarea rows={3} className={inputCls} value={form.products} onChange={set("products")} placeholder="Market, available assets, capital capacity, objectives" />
+                </div>
+              )}
+
+              <div>
+                <label className="label-industrial block mb-2">Message</label>
+                <textarea rows={4} className={inputCls} value={form.message} onChange={set("message")} placeholder="Share the goal, timeline context, and what you want to assess." />
+              </div>
+
+              <div className="flex items-start gap-3 rounded-xl border border-border p-4">
+                <ShieldAlert size={16} className="mt-0.5 flex-shrink-0 text-muted-foreground" />
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Do not upload confidential design files, proprietary drawings, or trade secrets through
+                  this form. Detailed material is shared only after an agreed confidentiality arrangement.
+                </p>
+              </div>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-1 h-4 w-4 accent-[var(--foreground)]"
+                  required
+                />
+                <span className="text-xs text-muted-foreground leading-relaxed">
+                  I agree that FAXIS.AI may use the information above to respond to this enquiry and keep
+                  it for follow-up. See our <Link href="/privacy" className="text-link underline">Privacy Policy</Link>.
+                </span>
+              </label>
+
+              <button type="submit" disabled={loading || !consent} className="btn-primary w-full justify-center disabled:opacity-50">
+                {loading ? "Sending…" : "Send Enquiry"}
+                <Send size={14} strokeWidth={2.2} />
+              </button>
+            </form>
+          )}
         </div>
       </section>
     </>
-  );
-}
-
-function Field({ label, icon: Icon, children, multiline }: { label: string; icon: React.ElementType; children: React.ReactNode; multiline?: boolean }) {
-  return (
-    <div>
-      <label className="block text-[11px] font-mono uppercase tracking-widest text-muted-foreground mb-2">
-        <Icon size={11} className="inline mr-1.5 -mt-0.5" />
-        {label}
-      </label>
-      <div className={[
-        "rounded-lg bg-muted/40 border border-border px-3.5 transition-colors",
-        multiline ? "py-3" : "h-11 flex items-center",
-        "focus-within:border-muted-foreground",
-      ].join(" ")}>
-        {children}
-      </div>
-    </div>
   );
 }

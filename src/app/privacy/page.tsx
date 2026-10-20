@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata = { title: "Privacy Policy" };
@@ -31,7 +32,7 @@ export default function PrivacyPage() {
             </div>
             <div>
               <h2 className="font-display text-xl font-semibold text-foreground mb-3">5. Contact</h2>
-              <p>For privacy-related questions, contact us at <a href="mailto:privacy@faxis.ai" className="text-link hover:underline">privacy@faxis.ai</a>.</p>
+              <p>For privacy-related questions, reach us through the <Link href="/contact" className="text-link hover:underline">contact page</Link>.</p>
             </div>
             <p className="text-xs text-muted-foreground font-mono pt-6 border-t border-border">
               Last updated: July 2026

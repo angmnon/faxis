@@ -8,12 +8,12 @@ import { useScrollY } from "@/hooks/use-scroll";
 import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/#platform", label: "Platform" },
-  { href: "/#solutions", label: "Solutions" },
-  { href: "/#technology", label: "Technology" },
-  { href: "/#partners", label: "Partners" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/brands", label: "For Brands & Retailers" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/technology", label: "Technology" },
+  { href: "/network", label: "Global Network" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -32,6 +32,15 @@ export function Navbar() {
           : "bg-transparent border-b border-transparent",
       ].join(" ")}
     >
+      {/* Utility strip */}
+      <div className="border-b border-border/60">
+        <div className="max-w-6xl mx-auto px-6 py-1.5 flex items-center justify-center">
+          <span className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+            Global manufacturing. Designed around local demand.
+          </span>
+        </div>
+      </div>
+
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center" aria-label="FAXIS.AI Home">
@@ -59,8 +68,8 @@ export function Navbar() {
             >
               {mounted && resolvedTheme === "light" ? <Moon size={15} /> : <Sun size={15} />}
             </button>
-            <Link href="/contact" className="btn-primary !py-2 !px-4 text-[13.5px]">
-              Become a Partner
+            <Link href="/contact?intent=brand" className="btn-primary !py-2 !px-4 text-[13.5px]">
+              Plan Local Production
               <ArrowUpRight size={14} strokeWidth={2.2} />
             </Link>
           </div>
@@ -89,7 +98,7 @@ export function Navbar() {
       <div
         className={[
           "lg:hidden overflow-hidden transition-all duration-300 bg-background/95 backdrop-blur-xl border-b border-border",
-          open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0",
+          open ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0",
         ].join(" ")}
       >
         <nav className="flex flex-col px-6 py-4 gap-1">
@@ -105,11 +114,11 @@ export function Navbar() {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href="/contact?intent=brand"
             onClick={() => setOpen(false)}
             className="btn-primary mt-4 w-full justify-center"
           >
-            Become a Partner
+            Plan Local Production
             <ArrowUpRight size={14} strokeWidth={2.2} />
           </Link>
         </nav>

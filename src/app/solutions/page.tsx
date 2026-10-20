@@ -1,102 +1,70 @@
-"use client";
-
-import * as React from "react";
-import { PageHeader } from "@/components/layout/page-header";
-import { Box, Cog, Layers, Syringe, Check, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { ArrowUpRight, ArrowRight, Store, Cpu, Home, Wrench, Archive, Boxes, SlidersHorizontal, Laptop, Printer, Cog, Layers, Container } from "lucide-react";
+import { PageHeader } from "@/components/layout/page-header";
+import { SectionHeader } from "@/components/layout/section-header";
+import { Card, CheckItem } from "@/components/layout/primitives";
 
-const SOLUTIONS = [
+export const metadata = {
+  title: "Solutions — Local Manufacturing by Product Family",
+  description:
+    "FAXIS.AI organizes solutions around product families and markets—not a fixed process list. Assess what can be produced locally, how the program is structured, and which processes may enter an appendix stage.",
+};
+
+const FAMILIES = [
+  { icon: Store, title: "Consumer & Everyday Products", desc: "Home, kitchen, storage, personal-use accessories, seasonal products, and other everyday goods suited to regional replenishment." },
+  { icon: Cpu, title: "Electronics & Electrical", desc: "Devices, electrical goods, connected hardware, electromechanical assemblies, and selected subassemblies, subject to supplier, testing, and compliance qualification." },
+  { icon: Home, title: "Appliances & Home Equipment", desc: "Small and large appliances, housings, structural parts, wiring assemblies, and final assembly or testing programs." },
+  { icon: Wrench, title: "Hardware, Tools & Home Improvement", desc: "Metal and plastic components, fixtures, fittings, tool accessories, storage systems, and building-related products." },
+  { icon: Archive, title: "Retail & Commercial Equipment", desc: "Display fixtures, shelving components, point-of-sale structures, back-of-house equipment, and store or warehouse products." },
+  { icon: Boxes, title: "Industrial Products & Parts", desc: "Components, assemblies, accessories, spare parts, and selected low-volume or configurable products." },
+  { icon: SlidersHorizontal, title: "Furniture, Storage & Modular", desc: "Frames, hardware, connectors, panels, modular assemblies, and products that benefit from regional production." },
+  { icon: Laptop, title: "Custom & Short-Run", desc: "Configurable, customized, or selected short-run products where flexibility and lower inventory exposure matter." },
+];
+
+const STAGES = [
   {
-    id: "3d-printing",
-    icon: Box,
-    code: "FXP-01",
-    title: "Autonomous 3D Printing Factory",
-    subtitle: "SLA · SLS · MJP · FDM · DLP",
-    longDesc: "Our 3D printing solution is the most mature product in the FAXIS.AI lineup — a fully autonomous printing farm where parts move from upload to packing without human intervention. AI handles orientation, support generation, nesting, scheduling, and vision-based quality inspection across SLA, SLS, MJP, FDM, and DLP processes.",
-    capabilities: [
-      "AI-driven part orientation minimizing support volume and build time",
-      "Automatic support structure generation across all supported technologies",
-      "Multi-objective build packing optimizing time, material cost, and surface quality",
-      "Cross-printer farm scheduling with priority and material constraints",
-      "In-situ camera-based anomaly detection for print failures",
-      "Post-process routing (curing, de-powdering, support removal) handled robotically",
-      "AI visual QC on every finished part with per-part traceability",
-    ],
-    kpis: [
-      { label: "Printer uptime", value: "95%+" },
-      { label: "Night-shift operators", value: "0" },
-      { label: "Quoting turnaround", value: "< 5 min" },
-      { label: "Supported techs", value: "5" },
-    ],
+    num: "01",
+    title: "Assess the product family",
+    desc: "Review demand, design, materials, current sourcing, quality requirements, and target market to decide whether local production merits a deeper business case.",
   },
   {
-    id: "cnc",
+    num: "02",
+    title: "Design the production architecture",
+    desc: "Define process steps, equipment, suppliers, quality stations, automation level, and operating controls for that specific product mix.",
+  },
+  {
+    num: "03",
+    title: "Deploy and qualify capacity",
+    desc: "Build or configure a dedicated site, transform an existing factory, or engage qualified local partners; run trials and acceptance criteria.",
+  },
+  {
+    num: "04",
+    title: "Operate and improve",
+    desc: "Coordinate planning, quality, maintenance, and delivery under one operating layer; expand on proven results.",
+  },
+];
+
+/* Appendix: the four known manufacturing processes, listed only as technical options */
+const PROCESSES = [
+  {
+    icon: Printer,
+    name: "3D Printing / Additive Manufacturing",
+    note: "Rapid prototypes, tooling, and selected low-volume or complex geometry parts; evaluated per part.",
+  },
+  {
     icon: Cog,
-    code: "FXP-02",
-    title: "Autonomous CNC Machining Line",
-    subtitle: "3-Axis · 4-Axis · 5-Axis (AI Assist)",
-    longDesc: "Our CNC solution delivers end-to-end unmanned production for standard 3-axis and 4-axis machining cells. AI quoting, AI CAM auto-programming, robotic loading and unloading, in-machine probing, and AI visual QC all run on the FAXIS.AI digital thread. For high-complexity 5-axis and mill-turn work we provide AI-assisted programming — supercharging senior engineers rather than replacing them.",
-    capabilities: [
-      "AI feature recognition from STEP/IGES files with DFM feedback",
-      "Minute-precise autonomous quoting for standard geometries",
-      "AI-generated CAM toolpaths for 3/4-axis standard parts",
-      "Robotic workpiece loading/unloading via integrated cell controller",
-      "In-machine probing and tool-wear monitoring with automatic offsets",
-      "AI visual QC on finished parts (dimensional + cosmetic)",
-      "5-axis and mill-turn AI-assist mode for expert programmers",
-    ],
-    kpis: [
-      { label: "CAM time cut", value: "-90%" },
-      { label: "Continuous operation", value: "7×24" },
-      { label: "Standard cell lights-out", value: "L5" },
-      { label: "Setup changeover", value: "Auto" },
-    ],
+    name: "CNC Machining",
+    note: "Precision metal and plastic parts; level of automation and support defined per program and complexity.",
   },
   {
-    id: "sheet-metal",
     icon: Layers,
-    code: "FXP-03",
-    title: "Autonomous Sheet Metal Factory",
-    subtitle: "Laser · Plasma · Bending · Welding",
-    longDesc: "Our sheet metal line covers the full workflow: laser/plasma cutting, CNC bending, stamping, and robotic welding. AI optimizes nesting and sheet utilization, plans bend sequences, generates robotic welding paths, and uses vision to inspect weld quality and cosmetic finish — a complete autonomous cell for sheet metal fabrication.",
-    capabilities: [
-      "AI automatic nesting and sheet utilization optimization (material yield +18%)",
-      "Cutting path optimization for laser/plasma with thermal-aware sequencing",
-      "Automatic bend sequence planning with tool selection",
-      "Robotic press-brake loading/unloading",
-      "Robotic welding path generation with seam tracking",
-      "AI vision-based weld inspection and cosmetic QC",
-      "Auto-sorting of finished parts for downstream kitting",
-    ],
-    kpis: [
-      { label: "Material yield", value: "+18%" },
-      { label: "Bend planning", value: "Auto" },
-      { label: "Weld inspection", value: "AI" },
-      { label: "Process coverage", value: "4 steps" },
-    ],
+    name: "Sheet Metal Fabrication",
+    note: "Folded, formed, and assembled metal components for fixtures, enclosures, and equipment.",
   },
   {
-    id: "injection",
-    icon: Syringe,
-    code: "FXP-04",
-    title: "Autonomous Injection Molding",
-    subtitle: "Mold Assist · Molding · Post-Process",
-    longDesc: "Our injection molding solution covers mold-making process planning plus the full autonomous production cycle. AI generates optimal process parameters (temperature profiles, pressure curves, hold times) from mold-flow analysis and historical data, robotic arms extract parts, post-process trimming/de-gating runs automatically, and on-line vision systems sort defects in real time.",
-    capabilities: [
-      "AI-driven mold design-for-manufacturing feedback",
-      "Process parameter auto-generation (temp, pressure, hold, cooling)",
-      "Closed-loop tuning based on shot-to-shot telemetry",
-      "Robotic part extraction and conveyor hand-off",
-      "Automatic sprue/de-gate trimming",
-      "On-line vision defect detection and sorting",
-      "Predictive maintenance for mold wear and machine health",
-    ],
-    kpis: [
-      { label: "Parameter setup", value: "Auto" },
-      { label: "Defect sorting", value: "Real-time" },
-      { label: "Cycle optimization", value: "Closed-loop" },
-      { label: "Post-process", value: "Robotic" },
-    ],
+    icon: Container,
+    name: "Injection Molding",
+    note: "Volume plastic components where tooling economics and demand justify the route.",
   },
 ];
 
@@ -105,88 +73,77 @@ export default function SolutionsPage() {
     <>
       <PageHeader
         label="Solutions"
-        eyebrow="// Product Matrix"
-        title={<>Four autonomous factory lines. One operating system.</>}
-        subtitle="FAXIS.AI delivers complete lights-out factory products across 3D printing, CNC machining, sheet metal fabrication, and injection molding. Every line runs on the same AI digital thread."
+        eyebrow="// Solutions"
+        title={<>Organized around what you make, not how a machine is grouped.</>}
+        subtitle="FAXIS.AI does not define the company by a single manufacturing process. We start from the product family and target market, then configure the production route—processes, suppliers, equipment, quality, and operations—around the business case."
       />
 
       <section className="py-20 lg:py-28">
-        <div className="max-w-6xl mx-auto px-6 space-y-24">
-          {SOLUTIONS.map((s, i) => (
-            <div key={s.id} id={s.id} className="grid lg:grid-cols-12 gap-10 items-start scroll-mt-28">
-              <div className={`lg:col-span-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                <div className="reveal">
-                  <div className="aspect-[4/3] rounded-2xl relative overflow-hidden border border-border bg-muted/40 flex items-center justify-center">
-                    <s.icon size={100} className="text-foreground/70 animate-float-slow" strokeWidth={1} />
-                    <div className="absolute top-4 left-4 text-[10px] font-mono text-muted-foreground tracking-widest">
-                      {s.code}
-                      <div className="mt-1">{s.subtitle}</div>
-                    </div>
-                    <div className="absolute bottom-4 right-4 text-right">
-                      <div className="flex items-center gap-1.5 justify-end text-[10px] font-mono text-foreground tracking-widest">
-                        <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse-dot" />
-                        ONLINE
-                      </div>
-                      <div className="text-[10px] font-mono text-muted-foreground mt-1">LIGHTS-OUT</div>
-                    </div>
-                  </div>
+        <div className="max-w-6xl mx-auto px-6">
+          <SectionHeader
+            eyebrow="Product Families"
+            title={<>Eight families we assess for local production.</>}
+            lead="Every program begins with feasibility and qualification review. A family appearing here means it can be assessed, not that it is automatically produced in every market."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {FAMILIES.map((f) => (
+              <Card key={f.title}>
+                <f.icon size={18} className="text-foreground mb-3" strokeWidth={1.6} />
+                <h3 className="font-display text-[15px] font-semibold text-foreground mb-1.5 leading-tight">{f.title}</h3>
+                <p className="text-[12.5px] text-muted-foreground leading-relaxed">{f.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                  {/* KPIs */}
-                  <div className="grid grid-cols-4 gap-3 mt-4">
-                    {s.kpis.map((k) => (
-                      <div key={k.label} className="card-neutral rounded-lg p-3 text-center">
-                        <div className="font-display text-lg font-semibold text-foreground">{k.value}</div>
-                        <div className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground mt-1 leading-tight">{k.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+      <section className="py-20 lg:py-28 bg-muted/30 border-y border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <SectionHeader eyebrow="How a Program Takes Shape" title={<>From product review to operating capacity.</>} />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {STAGES.map((s) => (
+              <Card key={s.num}>
+                <div className="font-mono text-2xl font-semibold text-muted-foreground mb-4">{s.num}</div>
+                <h3 className="font-display text-[15px] font-semibold text-foreground mb-2">{s.title}</h3>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">{s.desc}</p>
+              </Card>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link href="/contact?intent=brand" className="btn-primary">
+              Assess a Product Family
+              <ArrowUpRight size={14} strokeWidth={2.2} />
+            </Link>
+            <Link href="/how-it-works" className="btn-secondary">
+              <ArrowRight size={14} />
+              See the Program Path
+            </Link>
+          </div>
+        </div>
+      </section>
 
-              <div className={`lg:col-span-7 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                <div className="reveal" data-delay="150">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="font-mono text-[10px] tracking-widest text-muted-foreground">{s.code}</span>
-                    <span className="w-1 h-1 rounded-full bg-foreground" />
-                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-border text-[10px] font-mono tracking-wider text-muted-foreground uppercase">
-                      Production Validated
-                    </span>
-                  </div>
-                  <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground leading-tight mb-2 tracking-tight">
-                    {s.title}
-                  </h2>
-                  <p className="text-xs font-mono text-muted-foreground tracking-wider uppercase mb-5">
-                    {s.subtitle}
-                  </p>
-                  <p className="text-muted-foreground text-base leading-relaxed mb-6">
-                    {s.longDesc}
-                  </p>
-
-                  <h4 className="font-display text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">
-                    Core Capabilities
-                  </h4>
-                  <ul className="grid sm:grid-cols-2 gap-2.5 mb-7">
-                    {s.capabilities.map((c) => (
-                      <li key={c} className="flex items-start gap-2 text-[13px] text-foreground/80">
-                        <Check size={14} className="text-foreground mt-0.5 flex-shrink-0" strokeWidth={2.5} />
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-3">
-                    <Link href="/contact" className="btn-primary">
-                      Discuss Deployment
-                      <ArrowUpRight size={14} strokeWidth={2.2} />
-                    </Link>
-                    <Link href="/contact" className="btn-secondary">
-                      Request Technical Brief
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+      {/* Appendix: known processes */}
+      <section className="py-20 lg:py-28" id="processes">
+        <div className="max-w-6xl mx-auto px-6">
+          <SectionHeader
+            eyebrow="Appendix · Technical Processes Available in a Program"
+            title={<>Known processes, used where the case supports them.</>}
+            lead="The following processes may enter a program as technical options after product-specific review. They are reference capabilities, not a definition of what FAXIS.AI sells, and not commitments to operate each one in every market."
+          />
+          <div className="grid md:grid-cols-2 gap-4">
+            {PROCESSES.map((p) => (
+              <Card key={p.name}>
+                <p.icon size={18} className="text-foreground mb-3" strokeWidth={1.6} />
+                <h3 className="font-display text-[15px] font-semibold text-foreground mb-1.5">{p.name}</h3>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">{p.note}</p>
+              </Card>
+            ))}
+          </div>
+          <div className="mt-8 space-y-2.5 max-w-3xl">
+            <CheckItem>Process selection follows product design, volume, quality, and local supplier conditions.</CheckItem>
+            <CheckItem>Automation level, equipment, and staffing are defined per program rather than promised as a uniform standard.</CheckItem>
+            <CheckItem>Final process routes require engineering review, supplier qualification, and trial validation.</CheckItem>
+          </div>
         </div>
       </section>
     </>

@@ -1,4 +1,5 @@
-﻿import { PageHeader } from "@/components/layout/page-header";
+﻿import Link from "next/link";
+import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata = { title: "Cookies Policy" };
 
@@ -39,7 +40,7 @@ export default function CookiesPage() {
             </div>
             <div>
               <h2 className="font-display text-xl font-semibold text-foreground mb-3">6. Contact</h2>
-              <p>For questions about our use of cookies, contact us at <a href="mailto:privacy@faxis.ai" className="text-link hover:underline">privacy@faxis.ai</a>.</p>
+              <p>For questions about our use of cookies, reach us through the <Link href="/contact" className="text-link hover:underline">contact page</Link>.</p>
             </div>
             <p className="text-xs text-muted-foreground font-mono pt-6 border-t border-border">
               Last updated: July 2026
