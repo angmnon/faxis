@@ -29,8 +29,12 @@ export const metadata: Metadata = {
   authors: [{ name: "FAXIS.AI", url: "https://faxis.ai" }],
   robots: { index: true, follow: true },
   icons: {
-    icon: [{ url: "/assets/logo-mark.png", type: "image/png" }],
-    shortcut: [{ url: "/assets/logo-mark.png" }],
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+    ],
+    shortcut: [{ url: "/favicon.svg" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
     title: "FAXIS.AI | Local Manufacturing for Global Brands",
